@@ -6,6 +6,24 @@ import VideoList from './components/video_list/video_list.jsx';
 function App() {
   const [videos, setVideos] = useState([]);
 
+  const search = (query) => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&type=video&key=AIzaSyDDazUfGdBl_DEUKV94I9-lOe989LN_6cw`,
+      requestOptions,
+    )
+      .then((response) => response.json())
+      .then((result) =>
+        result.items.map((item) => ({ ...item, id: item.id.videoId })),
+      )
+      .then((items) => setVideos(items))
+      .catch((error) => console.log('error', error));
+  };
+
   const getPopularList = () => {
     const requestOptions = {
       method: 'GET',
@@ -17,7 +35,7 @@ function App() {
       requestOptions,
     )
       .then((response) => response.json())
-      .then((result) => setVideos(result.items))
+      .then((res) => setVideos(res.items))
       .catch((error) => console.log('error', error));
   };
 
@@ -26,7 +44,7 @@ function App() {
   }, []);
   return (
     <div className={styles.container}>
-      <SearchHeader />
+      <SearchHeader onSearch={search} />
       <VideoList videos={videos} />
     </div>
   );
