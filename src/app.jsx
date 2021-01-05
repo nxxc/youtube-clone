@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import './app.css';
+import styles from './app.module.css';
+import { SearchHeader } from './components/search_header/search_header.jsx';
 import VideoList from './components/video_list/video_list.jsx';
 
 function App() {
   const [videos, setVideos] = useState([]);
 
-  useEffect(() => {
+  const getPopularList = () => {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow',
@@ -15,11 +16,20 @@ function App() {
       'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyDDazUfGdBl_DEUKV94I9-lOe989LN_6cw',
       requestOptions,
     )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((response) => response.json())
+      .then((result) => setVideos(result.items))
       .catch((error) => console.log('error', error));
+  };
+
+  useEffect(() => {
+    getPopularList();
   }, []);
-  return <VideoList videos={videos} />;
+  return (
+    <div className={styles.container}>
+      <SearchHeader />
+      <VideoList videos={videos} />
+    </div>
+  );
 }
 
 export default App;
