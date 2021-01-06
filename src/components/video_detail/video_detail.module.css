@@ -1,5 +1,10 @@
 .detail {
   padding: 0.2em;
+  position: sticky;
+  top: 4rem;
+}
+
+.video {
 }
 
 .title {
@@ -12,4 +17,8 @@
 
 .description {
   white-space: pre-wrap;
+  height: auto;
+  max-height: 300px;
+  overflow: auto;
+  border: 1px solid gray;
 }
