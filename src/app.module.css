@@ -1,9 +1,15 @@
-.container {
+.app {
+  max-width: 80rem;
+}
+
+.content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
-  padding: 0.2em;
-  margin: auto;
+}
+
+.detail {
+  flex: 1 1 70%;
+}
+
+.list {
+  flex: 1 1 30%;
 }

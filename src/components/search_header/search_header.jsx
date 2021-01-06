@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styles from './search_header.module.css';
 
-export const SearchHeader = ({ onSearch }) => {
+const SearchHeader = ({ onSearch }) => {
   const inputRef = useRef();
 
   const handleSearch = () => {
@@ -37,3 +37,5 @@ export const SearchHeader = ({ onSearch }) => {
     </header>
   );
 };
+
+export default SearchHeader;

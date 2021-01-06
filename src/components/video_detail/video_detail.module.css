@@ -1,0 +1,15 @@
+.detail {
+  padding: 0.2em;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.channelTitle {
+  color: gray;
+}
+
+.description {
+  white-space: pre-wrap;
+}
